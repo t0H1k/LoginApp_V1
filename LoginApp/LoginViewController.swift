@@ -19,8 +19,8 @@ class LoginViewController: UIViewController {
         super.viewDidLoad()
         userNameTF.text = userName
     }
-    
      
+    // MARK: - IBAction
     @IBAction func logInButtonTapped() {
         if userNameTF.text == "user11" && passwordTF.text == "qwerty" {
         } else {
@@ -49,5 +49,14 @@ extension LoginViewController {
         present(alert, animated: false)
         alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { (action: UIAlertAction!) in self.passwordTF.text = "" }))
     }
+    
+    // MARK: - UITouch
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        if let _ = touches.first {
+            view.endEditing(true)
+        }
+        super .touchesBegan(touches, with: event)
+    }
 }
+
 
