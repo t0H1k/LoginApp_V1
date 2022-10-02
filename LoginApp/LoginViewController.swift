@@ -13,8 +13,6 @@ class LoginViewController: UIViewController {
     @IBOutlet var passwordTF: UITextField!
     @IBOutlet var logInButton: UIButton!
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         view.keyboardLayoutGuide.followsUndockedKeyboard = true
@@ -24,7 +22,6 @@ class LoginViewController: UIViewController {
         guard let welcomeVC = segue.destination as? WelcomeViewController else { return }
         welcomeVC.userName = userNameTF.text
     }
-    
     
     // MARK: - IBAction
     @IBAction func logInButtonTapped() {
