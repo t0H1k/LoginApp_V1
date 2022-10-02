@@ -13,13 +13,19 @@ class LoginViewController: UIViewController {
     @IBOutlet var passwordTF: UITextField!
     @IBOutlet var logInButton: UIButton!
     
-    var userName: String!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        userNameTF.text = userName
+        view.keyboardLayoutGuide.followsUndockedKeyboard = true
     }
-     
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let welcomeVC = segue.destination as? WelcomeViewController else { return }
+        welcomeVC.userName = userNameTF.text
+    }
+    
+    
     // MARK: - IBAction
     @IBAction func logInButtonTapped() {
         if userNameTF.text == "user11" && passwordTF.text == "qwerty" {

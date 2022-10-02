@@ -12,18 +12,17 @@ final class WelcomeViewController: UIViewController {
     @IBOutlet var welcomeUserNameLabel: UILabel!
     @IBOutlet var emojiLabel: UILabel!
     
-    
+    var userName: String!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         emojiLabel.text = "👻"
         setGradientBackground()
+        welcomeUserNameLabel.text = userName
+        
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        guard let loginVC = segue.destination as? LoginViewController else { return }
-        welcomeUserNameLabel.text = loginVC.userName
-    }
+
     
     @IBAction func logOutButtonTapped() {
         dismiss(animated: true)
@@ -31,8 +30,8 @@ final class WelcomeViewController: UIViewController {
     }
     
     func setGradientBackground() {
-        let colorTop =  UIColor(red: 012/255, green: 149/255, blue: 0/255, alpha: 1.0).cgColor
-        let colorBottom = UIColor(red: 255/255, green: 94/255, blue: 58/255, alpha: 1.0).cgColor
+        let colorTop =  UIColor(red: 12/255, green: 100/255, blue: 30/255, alpha: 1.0).cgColor
+        let colorBottom = UIColor(red: 255/255, green: 50/255, blue: 10/255, alpha: 1.0).cgColor
                     
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [colorTop, colorBottom]
