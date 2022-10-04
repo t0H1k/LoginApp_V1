@@ -8,36 +8,42 @@
 import UIKit
 
 final class WelcomeViewController: UIViewController {
-
-    @IBOutlet var welcomeUserNameLabel: UILabel!
-    @IBOutlet var emojiLabel: UILabel!
     
-    var userName: String!
+    @IBOutlet var welcomeUserNameLabel: UILabel!
+    
+    var userName = ""
+    
+    private let firstColor = UIColor(
+        red: 200/255,
+        green: 50/255,
+        blue: 100/255,
+        alpha: 1
+    )
+    
+    private let secondColor = UIColor(
+        red: 100/255,
+        green: 180/255,
+        blue: 250/255,
+        alpha: 1
+    )
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        emojiLabel.text = "👻"
-        setGradientBackground()
-        welcomeUserNameLabel.text = userName
-        
+        view.addVerticalGradientLayer(topColor: firstColor, bottomColor: secondColor)
+        welcomeUserNameLabel.text = "Welcome, \(userName)!"
     }
-    
+}
 
     
-    @IBAction func logOutButtonTapped() {
-        dismiss(animated: true)
-        
-    }
-    
-    func setGradientBackground() {
-        let colorTop =  UIColor(red: 12/255, green: 100/255, blue: 30/255, alpha: 1.0).cgColor
-        let colorBottom = UIColor(red: 255/255, green: 50/255, blue: 10/255, alpha: 1.0).cgColor
-                    
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [colorTop, colorBottom]
-        gradientLayer.locations = [0.0, 1.0]
-        gradientLayer.frame = self.view.bounds
-                
-        self.view.layer.insertSublayer(gradientLayer, at:0)
+//MARK: - Set background color
+extension UIView {
+    func addVerticalGradientLayer(topColor: UIColor, bottomColor: UIColor) {
+        let gradient = CAGradientLayer()
+        gradient.frame = bounds
+        gradient.colors = [topColor.cgColor, bottomColor.cgColor]
+        gradient.locations = [0.0, 1.0]
+        gradient.startPoint = CGPoint(x: 0, y: 0)
+        gradient.endPoint = CGPoint(x: 0, y: 1)
+        layer.insertSublayer(gradient, at: 0)
     }
 }
